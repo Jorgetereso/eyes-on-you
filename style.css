@@ -1,0 +1,156 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  height: 100%;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app-container {
+  position: fixed;
+  inset: 0;
+}
+
+#camera-feed {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+#viz-canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#ui-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Tap to begin overlay */
+#tap-to-begin {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  cursor: pointer;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  transition: opacity 0.4s ease;
+}
+
+#tap-to-begin span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+}
+
+#tap-to-begin.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Controls bar */
+#controls-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+  padding-top: 16px;
+  pointer-events: all;
+}
+
+.ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  outline: none;
+}
+
+.ctrl-btn:active {
+  transform: scale(0.92);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.ctrl-btn.active {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+
+.ctrl-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* File upload label acts like button */
+label.ctrl-btn {
+  cursor: pointer;
+}
+
+label.ctrl-btn:active {
+  transform: scale(0.92);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Photo album — floating on the right */
+#album {
+  position: fixed;
+  right: 12px;
+  top: 50%;
+  width: 160px;
+  height: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.album-photo {
+  position: absolute;
+  width: 72px;
+  height: 50px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 220, 0, 0.45);
+  border-radius: 2px;
+  display: block;
+  opacity: 0;
+  will-change: transform, opacity;
+  left: 0;
+  top: 0;
+}
