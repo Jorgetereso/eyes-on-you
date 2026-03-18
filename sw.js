@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eyes-on-you-v1';
+const CACHE_NAME = 'eyes-on-you-v2';
 
 const STATIC_ASSETS = [
   './',
@@ -8,6 +8,9 @@ const STATIC_ASSETS = [
   './js/app.js',
   './js/audio.js',
   './js/camera.js',
+  './js/face.js',
+  './js/segment.js',
+  './js/warp.js',
   './js/visualizer.js',
 ];
 
